@@ -18,7 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "baseHref": "/mde-druck/",
+            "baseHref": "/",
             "outputPath": {
               "base": "dist",
               "browser": ""

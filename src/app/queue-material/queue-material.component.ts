@@ -9,7 +9,6 @@ import {
   IonButton,
   IonCol,
   IonIcon,
-  IonNote,
   IonRow,
   Platform,
 } from '@ionic/angular/standalone';
@@ -27,7 +26,7 @@ import { Material } from '../services/data.service';
   templateUrl: './queue-material.component.html',
   styleUrls: ['./queue-material.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IonNote, IonIcon, IonButton, IonRow, IonCol],
+  imports: [IonIcon, IonButton, IonRow, IonCol],
 })
 export class QueueMaterialComponent {
   unqueue = output<Material>();

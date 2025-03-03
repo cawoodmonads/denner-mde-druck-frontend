@@ -1,2 +1,2 @@
-# denner-mde-druck-backend
-MDE Druck Backend
+# MDE Druck Backend
+This is code for the API

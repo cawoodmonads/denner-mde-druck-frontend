@@ -1,10 +1,10 @@
 {
   "name": "mde-druck",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Marc Cawood",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 7073 -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
