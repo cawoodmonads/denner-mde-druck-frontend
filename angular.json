@@ -20,7 +20,7 @@
           "options": {
             "baseHref": "/",
             "outputPath": {
-              "base": "www",
+              "base": "output",
               "browser": ""
             },
             "index": "src/index.html",
