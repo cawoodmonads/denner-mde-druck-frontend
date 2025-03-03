@@ -4,12 +4,6 @@
       "route": "/*",
       "allowedRoles": [
         "authenticated"
-      ]
-    },
-    {
-      "route": "/api",
-      "allowedRoles": [
-        "authenticated"
       ],
       "headers": {
         "Cache-Control": "no-store"
