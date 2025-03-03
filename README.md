@@ -1,4 +1,5 @@
 # denner-mde-druck
 MDE Druck
 
-TODO: Remove zone.js
+
+https://proud-pond-06779f303.6.azurestaticapps.net/

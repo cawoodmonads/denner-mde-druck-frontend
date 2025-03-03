@@ -14,9 +14,6 @@
       "type": "npm",
       "label": "*** PUBLISH",
       "script": "publish",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
       "problemMatcher": []
     },
   ]
