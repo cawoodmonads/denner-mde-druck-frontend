@@ -1,2 +1,4 @@
-# denner-mde-druck-frontend
-Denner MDE Druck Frontend
+# denner-mde-druck
+MDE Druck
+
+TODO: Remove zone.js

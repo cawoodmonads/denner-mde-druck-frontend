@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>MDE Druck</ion-title>
+    <ion-buttons slot="start">
+      <ion-spinner *ngIf="spinning()" color="primary"></ion-spinner>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" fill="solid"
+        >Drucken ({{ printQueue().length }})&nbsp;
+        <ion-icon name="print-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> MDE Druck 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  @if(!materials()) { No materials found } @if(materials()) {
+  <ion-list>
+    <ion-item>
+      <ion-searchbar
+        search-icon="barcode-outline"
+        id="searchbar"
+        [debounce]="500"
+        placeholder="Barcode / EAN"
+        [(ngModel)]="searchTerm"
+        (ionInput)="loadMaterials()"
+      ></ion-searchbar>
+    </ion-item>
+    <ion-grid style="height: 300px; overflow-y: scroll">
+      @for ( material of materials(); track material.materialNo) {
+      <app-material
+        [material]="material"
+        (queue)="queueMaterial($event)"
+      ></app-material>
+      }
+    </ion-grid>
+  </ion-list>
+
+  } @if(!printQueue()) { Druckwarteschlange ist leer }
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label> Druckwarteschlange </ion-label>
+      </ion-item-divider>
+      <ion-grid>
+        @for ( material of printQueue(); track material.materialNo) {
+        <app-queue-material
+          [material]="material"
+          (unqueue)="unqueueMaterial($event)"
+        ></app-queue-material>
+        }
+      </ion-grid>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
