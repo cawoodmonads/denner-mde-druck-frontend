@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>MDE Druck</ion-title>
+    <ion-title>MDE Druck - {{user().name}} ({{user().roles}})</ion-title>
     <ion-buttons slot="start">
       <ion-spinner *ngIf="spinning()" color="primary"></ion-spinner>
     </ion-buttons>

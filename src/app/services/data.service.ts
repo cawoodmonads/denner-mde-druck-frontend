@@ -21,6 +21,11 @@ export class Material {
     return `${this.materialNo} ${this.description}`.toLowerCase();
   }
 }
+export class User {
+  name!: string;
+  email!: string;
+  roles!: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +51,8 @@ export class DataService {
   doSearch(searchTerm: string) {
     return (m: Material) =>
       !searchTerm || m.toSearchText().includes(searchTerm.toLowerCase());
+  }
+  public async getUser(): Promise<User> {
+    return await this.apiService.userDetails();
   }
 }

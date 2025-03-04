@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Material } from './data.service';
+import { Material, User } from './data.service';
 
 //const DEV_API_URL = 'https://67bf103cb2320ee050127892.mockapi.io/api/v1';
 const DEV_API_URL = 'http://localhost:7091/api';
@@ -26,5 +26,22 @@ export class APIService {
       });
     });
     return materials;
+  }
+  async userDetails(): Promise<User> {
+    try {
+      const res = await fetch(`/.auth/me`);
+      const obj = await res.json();
+      return {
+        name: obj.userDetails,
+        email: obj.userDetails,
+        roles: obj.userRoles?.join(', '),
+      };
+    } catch (e) {
+      return {
+        name: 'ERROR',
+        email: '',
+        roles: '',
+      };
+    }
   }
 }

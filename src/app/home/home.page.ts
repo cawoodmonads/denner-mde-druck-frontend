@@ -23,7 +23,7 @@ import { MaterialComponent } from '../material/material.component';
 import { QueueMaterialComponent } from '../queue-material/queue-material.component';
 
 import { barcodeOutline, printOutline } from 'ionicons/icons';
-import { DataService, Material } from '../services/data.service';
+import { DataService, Material, User } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -56,6 +56,7 @@ export class HomePage {
   private lastKeyDown = new Date();
   private loading?: HTMLIonLoadingElement;
 
+  user = signal<User>({ name: '', email: '', roles: '' });
   spinning = signal(false);
   materials = signal<Material[]>([]);
   printQueue = signal<Material[]>([]);
@@ -65,6 +66,7 @@ export class HomePage {
     addIcons({ barcodeOutline, printOutline });
     this.spinning.set(true);
     this.loadMaterials();
+    this.loadUser();
     //this.searchTerm.set('hello');
     // Focus searchbar every 5 seconds (unless a key was pressed in the last 5 seconds)
     const focus = this.focusSearchBar.bind(this);
@@ -87,6 +89,9 @@ export class HomePage {
       this.spinning.set(false);
       this.materials.set(r);
     });
+  }
+  loadUser() {
+    this.data.getUser().then(this.user.set);
   }
   unqueueMaterial(material: Material) {
     this.printQueue.update((queue) => {
