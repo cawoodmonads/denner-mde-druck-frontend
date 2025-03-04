@@ -32,9 +32,9 @@ export class APIService {
       const res = await fetch(`/.auth/me`);
       const obj = await res.json();
       return {
-        name: obj.userDetails,
-        email: obj.userDetails,
-        roles: obj.userRoles?.join(', '),
+        name: obj.clientPrincipal?.userDetails || 'UNKNOWN',
+        email: obj.clientPrincipal?.userDetails || 'UNKNOWN',
+        roles: obj.clientPrincipal?.userRoles?.join(', '),
       };
     } catch (e) {
       return {
