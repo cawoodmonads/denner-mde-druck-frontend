@@ -1,14 +1,9 @@
 @if (material()) {
 <ion-row class="ion-align-items-start">
-  <ion-col size="9">
+  <ion-col size="8">
     {{ material().materialNo }} <br />
     {{ material().description }}
   </ion-col>
-  <!--
-    <ion-col
-    ><ion-note>{{ material().unit }}</ion-note></ion-col
-    >
-    -->
   <ion-col class="ion-text-nowrap" size="2">
     <ion-button
       (click)="decrementQty()"
@@ -28,11 +23,11 @@
       <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
     </ion-button>
   </ion-col>
-  <!--<ion-col size="2" class="ion-text-nowrap">CHF {{ material().price }}</ion-col>-->
   <ion-col size="1">
     <ion-button size="large" color="danger" (click)="unqueueMaterial()">
       <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
     </ion-button>
   </ion-col>
+  <ion-col size="1"></ion-col>
 </ion-row>
 }

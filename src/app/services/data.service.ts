@@ -24,7 +24,17 @@ export class Material {
 export class User {
   name!: string;
   email!: string;
-  roles!: string;
+  roles!: string[];
+  branch!: string;
+}
+
+export class PrintRequest {
+  BranchId!: string;
+  Items!: PrintItem[];
+}
+export class PrintItem {
+  MaterialNo!: string;
+  Quantity!: number;
 }
 
 @Injectable({
@@ -54,5 +64,17 @@ export class DataService {
   }
   public async getUser(): Promise<User> {
     return await this.apiService.userDetails();
+  }
+  public async printMaterials(
+    branchId: string,
+    materials: Material[]
+  ): Promise<string> {
+    const printRequest: PrintRequest = {
+      BranchId: branchId,
+      Items: materials.map((m) => {
+        return { MaterialNo: m.materialNo, Quantity: m.quantity };
+      }),
+    };
+    return await this.apiService.print(printRequest);
   }
 }

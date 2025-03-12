@@ -56,7 +56,7 @@ export class HomePage {
   private lastKeyDown = new Date();
   private loading?: HTMLIonLoadingElement;
 
-  user = signal<User>({ name: '', email: '', roles: '' });
+  user = signal<User>({ name: '', email: '', roles: [], branch: '' });
   spinning = signal(false);
   materials = signal<Material[]>([]);
   printQueue = signal<Material[]>([]);
@@ -115,5 +115,18 @@ export class HomePage {
         return JSON.parse(JSON.stringify(queue));
       });
     }
+  }
+  submitPrintJob() {
+    this.spinning.set(true);
+    this.data
+      .printMaterials(this.user().branch, this.printQueue())
+      .then((result) => {
+        this.spinning.set(false);
+        this.printQueue.set([]);
+        alert(result);
+      })
+      .catch(() => {
+        this.spinning.set(false);
+      });
   }
 }

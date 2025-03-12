@@ -1,0 +1,24 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DEBUG FUNCTION",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (functions)",
+      "program": "C:\\Program Files\\Microsoft\\Azure Functions Core Tools\\func.exe",
+      "args": [
+        "host",
+        "start",
+        "--port 7078"
+      ],
+      "cwd": "C:\\projects\\denner\\denner-mde-druck-frontend\\api\\mde-druck-backend\\bin\\Debug\\net8.0",
+      "stopAtEntry": false,
+      "justMyCode": true,
+      "console": "internalConsole"
+    },
+  ]
+}

@@ -1,12 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>MDE Druck - {{user().name}} ({{user().roles}})</ion-title>
+    <ion-title
+      >MDE Druck - {{user().name}} ({{user().roles.join(', ')}})</ion-title
+    >
     <ion-buttons slot="start">
       <ion-spinner *ngIf="spinning()" color="primary"></ion-spinner>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button color="primary" fill="solid"
-        >Drucken ({{ printQueue().length }})&nbsp;
+      <ion-button color="primary" fill="solid" (click)="submitPrintJob()">
+        Drucken ({{ printQueue().length }})&nbsp;
         <ion-icon name="print-outline"></ion-icon>
       </ion-button>
     </ion-buttons>

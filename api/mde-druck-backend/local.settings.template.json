@@ -6,12 +6,6 @@
     "MOCK_API": "true",
     "ServiceOptions:PrintBaseAddress": "http://dennerprint:8888",
     "ServiceOptions:PrintUserName": "1801",
-    "ServiceOptions:PrintPassword": "19921992",
-    "ServiceOptions:TCPOSBaseAddress": "http://dennertcpos:8888",
-    "ServiceOptions:TCPOSUserName": "1801",
-    "ServiceOptions:TCPOSPassword": "19921992"
-  },
-  "Host": {
-    "CORS": "*"
+    "ServiceOptions:PrintPassword": "19921992"
   }
 }

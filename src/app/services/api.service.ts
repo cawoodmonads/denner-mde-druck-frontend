@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Material, User } from './data.service';
+import { Material, PrintRequest, User } from './data.service';
 
-//const DEV_API_URL = 'https://67bf103cb2320ee050127892.mockapi.io/api/v1';
-const DEV_API_URL = 'http://localhost:7091/api';
+const DEV_API_URL = 'http://localhost:7071/api';
 const PROD_API_URL = '/api';
 const baseUrl = document.location.host.match(/localhost/)
   ? DEV_API_URL
@@ -28,20 +27,50 @@ export class APIService {
     return materials;
   }
   async userDetails(): Promise<User> {
+    if (document.location.host.match(/localhost/)) {
+      return {
+        name: 'Local User',
+        email: '',
+        roles: ['admin'],
+        branch: '9999',
+      };
+    }
+    const ignoreRoles = ['anonymous', 'authenticated'];
     try {
       const res = await fetch(`/.auth/me`);
       const obj = await res.json();
+      if (!obj?.clientPrincipal) throw new Error('No user found');
+      const user = obj.clientPrincipal;
+      if (!user.userRoles) user.userRoles = [];
+      const roles = user.userRoles.filter(
+        (r: string) => !r.startsWith('branch:') && !ignoreRoles.includes(r)
+      );
+      const branches = user.userRoles
+        .filter((r: string) => r.startsWith('branch:'))
+        .map((r: string) => r.split(':')[1]);
       return {
-        name: obj.clientPrincipal?.userDetails || 'UNKNOWN',
-        email: obj.clientPrincipal?.userDetails || 'UNKNOWN',
-        roles: obj.clientPrincipal?.userRoles?.join(', '),
+        name: user.userDetails || 'UNKNOWN',
+        email: user.userDetails || 'UNKNOWN',
+        roles,
+        branch: branches.length ? branches[0] : '',
       };
     } catch (e) {
       return {
         name: 'ERROR',
         email: '',
-        roles: '',
+        roles: [],
+        branch: '',
       };
     }
+  }
+  async print(printRequest: PrintRequest): Promise<string> {
+    const res = await fetch(`/api/print`, {
+      method: 'POST',
+      body: JSON.stringify(printRequest),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return await res.text();
   }
 }
